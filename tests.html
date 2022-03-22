@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>tests</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+</head>
+
+<body>
+
+	<script src='script.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+	<script>
+		mocha.setup('bdd'); 
+    var assert = chai.assert;
+	</script>
+
+	<div id="mocha"></div>
+
+	<script>
+		describe('squareRoots - функция нахождения корней квадратного уравнения', function() {
+
+    var testSet=[
+      {a:1, b:-2,c:-3,  roots:[3,-1] },
+      {a:1, b:12,c:36,  roots:[-6]   },
+      {a:1, b:1, c:1,   roots:[]     },
+      {a:-1,b:-2,c:15,  roots:[-5,3] },
+      {a:0, b:5, c:-10, roots:[2] },
+    ];
+
+    for ( let test of testSet ) {
+      it(`находит корни при a=${test.a} b=${test.b} c=${test.c} и они равны [${test.roots.join(",")}]`, function(){
+          var roots=squareRoots(test.a,test.b,test.c);
+          assert.deepEqual(roots,test.roots);
+      });
+    }
+
+  });
+
+  mocha.run();
+
+	</script>
+
+</body>
+
+</html>
